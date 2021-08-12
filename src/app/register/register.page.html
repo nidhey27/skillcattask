@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Derivative Calculator</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <ion-item>
+      <ion-icon class="input-icon" name="person-outline" slot="start"></ion-icon>
+      <ion-label position="stacked">Username</ion-label>
+      <ion-input formControlName="username" placeholder="Enter Username"></ion-input>
+    </ion-item>
+    <p *ngIf="(!loginForm.controls['username'].valid) && (loginForm.controls['username'].touched) "
+      class="alert alert-danger" padding>Username must be combination of alphanumeric value.</p>
+    <ion-item>
+      <ion-icon class="input-icon" name="lock-closed-outline" slot="start"></ion-icon>
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input type="password" formControlName="password" placeholder="Enter Password"></ion-input>
+    </ion-item>
+    <p *ngIf="(!loginForm.controls['password'].valid) && (loginForm.controls['password'].touched) "
+      class="alert alert-danger" padding>Password must be at least 6 characters.</p>
+
+
+      <ion-item>
+        <ion-icon class="input-icon" name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-label position="stacked">Polynomical</ion-label>
+        <ion-input type="text" formControlName="ploy" placeholder="Enter Polynomical"></ion-input>
+      </ion-item>
+      <p *ngIf="(!loginForm.controls['ploy'].valid) && (loginForm.controls['ploy'].touched) "
+      class="alert alert-danger" padding>Enter a valid polynomial. Ex: 4x^3 + 3x^1 + 2x^2</p>
+    
+
+    <div class="alert mt-2 alert-success" *ngIf="successMsg.length > 0">
+      {{ successMsg }}
+    </div>
+
+    <div class="alert mt-2 alert-danger" *ngIf="errorMsg.length > 0">
+      {{ errorMsg }}
+    </div>
+
+    <ion-button type="submit" [disabled]="!loginForm.valid" color="dark" class="ion-margin-top" shape="round"
+      fill="outline" size="large" expand="full">Login
+    </ion-button>
+  </form>
+
+  <h1>
+    derivative Value : {{ derivativeValue || '-' }}
+  </h1>
+</ion-content>
